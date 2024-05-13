@@ -16,14 +16,14 @@ public class DiscountService : IDiscountService
     public double GetAllDiscounts(Basket basket)
     {
         var booksByPublishers = BasketSort.SortByPublisher(basket.Books);
-        return booksByPublishers.Sum(GetAllDiscountsFromPublishers);
+        return booksByPublishers.Sum(GetAllDiscountsFromSelectedPublisher);
     }
 
-    private double GetAllDiscountsFromPublishers(KeyValuePair<string, List<Book>> booksByPublisher)
+    private double GetAllDiscountsFromSelectedPublisher(KeyValuePair<string, List<Book>> booksByPublisher)
     {
         if (!_publisherDiscountService.TryGetValue(booksByPublisher.Key, out var publisherDiscountService))
         {
-            return booksByPublisher.Value.Sum(book => book.Price);
+            return BasketCalculations.ApplyNoDiscount(booksByPublisher);
         }
 
         return publisherDiscountService.ApplyAllPublisherDiscounts(booksByPublisher.Value);

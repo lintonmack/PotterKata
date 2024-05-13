@@ -24,7 +24,7 @@ public class PotterPublisherDiscountService : IPublisherDiscountService
         {
             if (!_potterPublisherDiscounts.TryGetValue(collection.Key, out var discountOnCollection))
             {
-                revisedPrice += ApplyNoDiscount(collection);
+                revisedPrice += BasketCalculations.ApplyNoDiscount(collection);
                 continue;
             }
 
@@ -32,10 +32,5 @@ public class PotterPublisherDiscountService : IPublisherDiscountService
         }
 
         return revisedPrice;
-    }
-
-    private static double ApplyNoDiscount(KeyValuePair<string, List<Book>> books)
-    {
-        return books.Value.Sum(book => book.Price);
     }
 }
