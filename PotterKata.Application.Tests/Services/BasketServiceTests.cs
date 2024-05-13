@@ -372,4 +372,96 @@ public class BasketServiceTests
         // Then
         result.Should().Be(29.60);
     }
+    
+    [Fact]
+    public void GivenOneFullCollectionAndAnotherContainingThreeUniqueTitles_WhenGetTotalIsCalled_ThenCorrectDiscountShouldBeApplied()
+    {
+        // Given 
+        var basket = new Basket
+        {
+            Books = new List<Book>
+            {
+                new()
+                {
+                    Title = "Book 1",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                },
+                new()
+                {
+                    Title = "Book 1",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                },
+                new()
+                {
+                    Title = "Book 2",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                },
+                new()
+                {
+                    Title = "Book 2",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                }
+                ,
+                new()
+                {
+                    Title = "Book 3",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                },
+                new()
+                {
+                    Title = "Book 3",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                },
+                new()
+                {
+                    Title = "Book 4",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                },
+                new()
+                {
+                    Title = "Book 5",
+                    Author = "JK Rowking",
+                    Collection = "Harry Potter",
+                    Genre = "Fiction",
+                    Publisher = "PotterPublishing",
+                    Price = 8.00
+                }
+                
+            }
+        };
+        
+        // When
+        var result = _basketService.GetTotal(basket);
+
+        // Then
+        result.Should().Be(51.60);
+    }
 }
