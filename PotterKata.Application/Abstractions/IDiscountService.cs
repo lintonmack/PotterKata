@@ -4,5 +4,5 @@ namespace Application.Abstractions;
 
 public interface IDiscountService
 {
-    public double GetAllDiscounts(Basket basket);
+    public double ApplyAllDiscounts(Basket basket);
 }

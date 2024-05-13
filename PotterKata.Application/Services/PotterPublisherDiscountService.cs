@@ -1,6 +1,6 @@
 using Application.Abstractions;
 using Application.Entities.Models;
-using Application.Entities.PublisherDiscounts.PotterPublishingDiscounts;
+using Application.Entities.PublisherDiscounts.PotterPublishing;
 using Application.Utilities;
 
 namespace Application.Services;
@@ -11,7 +11,7 @@ public class PotterPublisherDiscountService : IPublisherDiscountService
 
     private readonly Dictionary<string, IPotterPublisherDiscountService> _potterPublisherDiscounts = new()
     {
-        { HarryPotter, new HarryPotterCollectionPublisherDiscountService() }
+        { HarryPotter, new HarryPotterCollectionDiscountOffer() }
     };
 
     public double ApplyAllPublisherDiscounts(List<Book> books)
@@ -28,7 +28,7 @@ public class PotterPublisherDiscountService : IPublisherDiscountService
                 continue;
             }
 
-            revisedPrice += discountOnCollection.ApplyDiscountOnBookCollection(collection);
+            revisedPrice += discountOnCollection.ApplyDiscountOfferOnBookCollection(collection);
         }
 
         return revisedPrice;

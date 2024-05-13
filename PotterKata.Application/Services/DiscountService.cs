@@ -13,13 +13,13 @@ public class DiscountService : IDiscountService
         { PotterPublishing, new PotterPublisherDiscountService() }
     };
 
-    public double GetAllDiscounts(Basket basket)
+    public double ApplyAllDiscounts(Basket basket)
     {
         var booksByPublishers = BasketSort.SortByPublisher(basket.Books);
-        return booksByPublishers.Sum(GetAllDiscountsFromSelectedPublisher);
+        return booksByPublishers.Sum(ApplyAllDiscountsFromSelectedPublisher);
     }
 
-    private double GetAllDiscountsFromSelectedPublisher(KeyValuePair<string, List<Book>> booksByPublisher)
+    private double ApplyAllDiscountsFromSelectedPublisher(KeyValuePair<string, List<Book>> booksByPublisher)
     {
         if (!_publisherDiscountService.TryGetValue(booksByPublisher.Key, out var publisherDiscountService))
         {

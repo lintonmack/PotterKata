@@ -19,6 +19,6 @@ public class BasketService : IBasketService
             return 0.00;
         }
 
-        return _discountService.GetAllDiscounts(basket);
+        return _discountService.ApplyAllDiscounts(basket);
     }
 }

@@ -4,5 +4,5 @@ namespace Application.Abstractions;
 
 public interface IPotterPublisherDiscountService
 {
-    public double ApplyDiscountOnBookCollection(KeyValuePair<string, List<Book>> booksByCollection);
+    public double ApplyDiscountOfferOnBookCollection(KeyValuePair<string, List<Book>> booksByCollection);
 }

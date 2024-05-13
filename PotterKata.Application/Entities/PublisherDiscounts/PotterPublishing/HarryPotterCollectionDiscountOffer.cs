@@ -2,11 +2,11 @@ using Application.Abstractions;
 using Application.Entities.Models;
 using Application.Utilities;
 
-namespace Application.Entities.PublisherDiscounts.PotterPublishingDiscounts;
+namespace Application.Entities.PublisherDiscounts.PotterPublishing;
 
-public class HarryPotterCollectionPublisherDiscountService : IPotterPublisherDiscountService
+public class HarryPotterCollectionDiscountOffer : IPotterPublisherDiscountService
 {
-    public double ApplyDiscountOnBookCollection(KeyValuePair<string, List<Book>> booksByCollection)
+    public double ApplyDiscountOfferOnBookCollection(KeyValuePair<string, List<Book>> booksByCollection)
     {
         var booksInHarryPotterCollection = BasketSort.SortByTitle(booksByCollection);
 
